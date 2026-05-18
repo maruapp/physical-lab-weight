@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PHYSICAL LAB</title>
+</head>
+<body>
+
+<h2>PHYSICAL LAB</h2>
+
+<input id="morning" placeholder="morning weight">
+<input id="night" placeholder="night weight">
+
+<button onclick="save()">save</button>
+
+<script>
+let data = JSON.parse(localStorage.getItem("weights") || "[]");
+
+function save(){
+  const m = document.getElementById("morning").value;
+  const n = document.getElementById("night").value;
+
+  data.push({
+    date: new Date().toISOString().slice(0,10),
+    morning: m,
+    night: n
+  });
+
+  localStorage.setItem("weights", JSON.stringify(data));
+  alert("saved");
+}
+</script>
+
+</body>
+</html>
